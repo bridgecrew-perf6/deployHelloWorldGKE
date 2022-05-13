@@ -43,7 +43,7 @@ jobs:
       with:
         cluster_name: ${{ secrets.GKE_CLUSTER }}
         # location: ${{ secrets.GKE_ZONE }}
-        location: us-central1-a
+        location: us-central1
 #--------
     - run: |-
         gcloud container clusters get-credentials "GKE_CLUSTER" --zone "$GKE_ZONE"
