@@ -50,6 +50,6 @@ jobs:
 
     - name: deploy
       run: |-
-          kubectl apply -f PodService-HolaMundo.yml
+          kubectl apply -f deploidment.yml
           kubectl rollout status deployment/$DEPLOYMENT_NAME
           kubectl get services -o wide
