@@ -1,4 +1,4 @@
-name: CI simple Hello App to GKE
+name: CI POD1 en GKE GCloud
 
 on:
   push:
