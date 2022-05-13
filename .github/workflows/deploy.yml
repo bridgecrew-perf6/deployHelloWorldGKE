@@ -10,7 +10,7 @@ on:
 
 env:
    PROJECT_ID: ${{ secrets.GKE_PROJECT }}
-   GKE_CLUSTER: gke-stf-44    # TODO: update to cluster name
+   GKE_CLUSTER: gks-demo-dev    # TODO: update to cluster name
    GKE_ZONE: us-central1-a   # TODO: update to cluster zone
    DEPLOYMENT_NAME: gke-hello-app # TODO: update to deployment name
 
@@ -37,11 +37,18 @@ jobs:
     - name: Docker configuration
       uses: google-github-actions/get-gke-credentials@v0
 
+#--------- Get the GKE credentials so we can deploy to the cluster
+    # - name: Set up GKE credentials
+    #   uses: google-github-actions/get-gke-credentials@v0
+      with:
+        cluster_name: ${{ secrets.GKE_CLUSTER }}
+        #location: ${{ secrets.GKE_ZONE }}
+#--------
     - run: |-
         gcloud container clusters get-credentials "GKE_CLUSTER" --zone "$GKE_ZONE"
 
-    - name: Deploy
+    - name: deploy
       run: |-
-        kubectl apply -f deployHelloWorldGKE.yml
-        kubectl rollout status deployment/$DEPLOYMENT_NAME
-        kubectl get services -o wide
+          kubectl apply -f deployHelloWorldGKE.yml
+          kubectl rollout status deployment/$DEPLOYMENT_NAME
+          kubectl get services -o wide
