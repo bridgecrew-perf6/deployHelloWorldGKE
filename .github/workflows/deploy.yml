@@ -46,7 +46,7 @@ jobs:
         location: us-central1
 #--------
     - run: |-
-        gcloud container clusters get-credentials "gke-stf-44" --zone "us-central1-a"
+        gcloud container clusters get-credentials "gke-stf-44" --zone "us-central1"
 
     - name: deploy
       run: |-
